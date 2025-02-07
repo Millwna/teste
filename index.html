@@ -1,58 +1,67 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testando</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
+        /* Background */
         body {
-    background-image: url('https://i.imgur.com/3ALJYWZ.jpeg'); /* Caminho da imagem */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center; /* Garante que a imagem se centralize */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Cobrir a altura total da tela */
-}
+            background-image: url('https://i.imgur.com/3ALJYWZ.jpeg'); /* Caminho da imagem */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center; /* Centraliza a imagem */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Cobrir a altura total da tela */
+        }
 
-#conteudo-inicial, #novo-conteudo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Isso vai garantir que os conteúdos sejam centralizados verticalmente */
-    text-align: center;
-}
+        /* Estilo dos botões */
+        button {
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
 
-button {
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin: 5px;
-}
+        .btn-sim { background-color: #fa69ff; }
+        .btn-não { background-color: #45a5ff; }
 
-.btn-sim { background-color: #fa69ff; }
-.btn-não { background-color: #45a5ff; }
+        /* Estilo das mensagens */
+        .message, .mensagem {
+            text-align: center;
+            color: rgb(255, 162, 56);
+            padding-top: 20%; /* Ajuste para centralizar verticalmente */
+            margin: 20px auto;
+            max-width: 400px;
+            font-size: 30px;
+            font-family: 'Franklin Gothic Medium', sans-serif;
+        }
 
-.message, .mensagem {
-    color: rgb(255, 162, 56);
-    margin: 0 auto;
-    font-size: 30px;
-    font-family: 'Franklin Gothic Medium', sans-serif;
-    max-width: 400px;
-}
+        /* Estilo para esconder elementos */
+        .hidden {
+            display: none;
+        }
 
-.hidden {
-    display: none;
-}
+        /* Centralização do conteúdo */
+        #conteudo-inicial, #novo-conteudo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Garante que o conteúdo ocupe a tela inteira */
+        }
 
     </style>
 </head>
+
 <body>
     <!-- Conteúdo inicial -->
     <div id="conteudo-inicial">
@@ -88,9 +97,9 @@ button {
         function voltarConteudoInicial() {
             // Esconde o novo conteúdo
             document.getElementById('novo-conteudo').classList.add('hidden');
-            // Mostra o conteúdo inicial
-            document.getElementById('conteudo-inicial').classList.remove('hidden');
-        }
+            // Mostra o conteúdo inicial 
+            document.getElementById('conteudo-inicial').classList.remove('hidden'); 
+        } 
     </script>
 </body>
 </html>
