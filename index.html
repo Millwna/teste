@@ -2,94 +2,186 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Testando</title>
+
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <style>
+
         body {
+
             background-image: url('https://i.imgur.com/3ALJYWZ.jpeg'); /* Caminho da imagem */
-            background-size: cover; /* A imagem ocupa toda a tela */
-            background-position: center center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Impede a repetição da imagem */
+
+            background-size: cover;
+
+            background-repeat: no-repeat;
+
             font-family: Arial, sans-serif;
+
             margin: 0;
+
             padding: 0;
-            height: 100vh; /* Garante que ocupe toda a altura da tela */
+
+            height: 100vh; /* Cobrir a altura total da tela */
+
         }
 
+        
+
         button {
+
             color: #fff;
+
             border: none;
+
             padding: 10px 20px;
+
             border-radius: 5px;
+
             cursor: pointer;
+
             font-size: 16px;
+
             transition: background-color 0.3s;
+
             margin: 5px;
+
         }
 
         .btn-sim { background-color: #fa69ff; }
+
         .btn-não { background-color: #45a5ff; }
 
-        .message, .mensagem {
+        
+
+        .message {
+
             text-align: center;
+
             color: rgb(255, 162, 56);
+
             padding-top: 20%;
+
             margin: 20px auto;
+
             max-width: 400px;
+
             font-size: 30px;
+
             font-family: 'Franklin Gothic Medium', sans-serif;
+
         }
 
+
+
+        .mensagem {
+
+           text-align: center;
+
+           color:rgb(255, 162, 56);
+
+            padding-top: 20%;
+
+            margin: 20px auto;
+
+            max-width: 400px;
+
+            font-size: 30px;
+
+            font-family: 'Franklin Gothic Medium', sans-serif;}
+
+
+
         .hidden {
+
             display: none;
+
         }
 
     </style>
+
 </head>
 
 <body>
+
     <!-- Conteúdo inicial -->
+
     <div id="conteudo-inicial">
+
         <div id="título" class="message">
+
             <h1>Você quer continuar?</h1>
+
         </div>
+
         <div class="flex items-center justify-center gap-4">
+
             <button class="btn-sim" onclick="mostrarNovoConteudo()">Sim</button>
+
             <button class="btn-não" onclick="permanecer()">Não</button>
+
         </div>
+
     </div>
+
+
 
     <!-- Novo conteúdo (inicialmente escondido) -->
+
     <div id="novo-conteudo" class="hidden">
+
         <div class="mensagem">
+
             <h1>Curiosa você, né?</h1>
+
             <p>Vai ter que esperar um pouco até ficar tudo pronto.</p>
-            <button class="btn-não" onclick="voltarConteudoInicial()">Voltar</button>
+
         </div>
+
     </div>
 
+
+
     <script>
+
         function mostrarNovoConteudo() {
+
             // Esconde o conteúdo inicial
+
             document.getElementById('conteudo-inicial').classList.add('hidden');
+
             // Mostra o novo conteúdo
+
             document.getElementById('novo-conteudo').classList.remove('hidden');
+
         }
+
+
 
         function permanecer() {
+
             alert("Você escolheu não continuar.");
+
         }
 
+
+
         function voltarConteudoInicial() {
+
             // Esconde o novo conteúdo
+
             document.getElementById('novo-conteudo').classList.add('hidden');
+
             // Mostra o conteúdo inicial 
             document.getElementById('conteudo-inicial').classList.remove('hidden'); 
         } 
-    </script>
+    </script> 
 </body>
 
+Esse é o meu código  
 </html>
