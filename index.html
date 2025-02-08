@@ -17,6 +17,20 @@
             height: 100vh;
         }
 
+        #conteudo-inicial {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa 100% da altura da tela */
+    text-align: center;
+}
+
+button {
+    margin: 10px; /* Distância entre os botões */
+}
+
+
         button {
             color: #fff;
             border: none;
@@ -125,10 +139,10 @@
 
             if (musica.paused) {
                 musica.play();
-                botao.innerText = "⏸ Pause";
+                botao.innerText = "❚❚";
             } else {
                 musica.pause();
-                botao.innerText = "▶ Play";
+                botao.innerText = "▶";
             }
         }
     </script>
