@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -6,17 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testando</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
     <style>
         body {
-            background-image: url('https://i.imgur.com/3ALJYWZ.jpeg'); /* Caminho da imagem */
-            background-size: cover; /* A imagem ocupa toda a tela */
-            background-position: center center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Impede a repetição da imagem */
+            background-image: url('https://i.imgur.com/3ALJYWZ.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh; /* Garante que ocupe toda a altura da tela */
+            height: 100vh;
         }
 
         button {
@@ -30,10 +28,46 @@
             margin: 5px;
         }
 
-        .btn-sim { background-color: #fa69ff; }
-        .btn-não { background-color: #45a5ff; }
+        .btn-sim {
+            background-color: #fa69ff;
+        }
 
-        .message, .mensagem {
+        .btn-não {
+            background-color: #45a5ff;
+        }
+
+        .btnMusica {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 5px;
+    background-color: #fa69ff;
+    position: fixed;      /* Faz o botão ficar fixo na tela */
+    bottom: 20px;         /* Coloca o botão a 20px da parte inferior */
+    left: 50%;            /* Posiciona o botão no centro da tela */
+    transform: translateX(300%); /* Ajuste para centralizar */
+}
+
+
+        .btnMusica:hover {
+            background-color: #f051d1;  /* Efeito de hover para quando passar o mouse */
+            border-color: #f051d1;      /* Muda a cor da borda quando o mouse passa */
+        }
+
+        .message {
+            text-align: center;
+            color: rgb(255, 162, 56);
+            padding-top: 20%;
+            margin: 20px auto;
+            max-width: 400px;
+            font-size: 30px;
+            font-family: 'Franklin Gothic Medium', sans-serif;
+        }
+
+        .mensagem {
             text-align: center;
             color: rgb(255, 162, 56);
             padding-top: 20%;
@@ -46,11 +80,11 @@
         .hidden {
             display: none;
         }
-
     </style>
 </head>
 
 <body>
+
     <!-- Conteúdo inicial -->
     <div id="conteudo-inicial">
         <div id="título" class="message">
@@ -67,15 +101,16 @@
         <div class="mensagem">
             <h1>Curiosa você, né?</h1>
             <p>Vai ter que esperar um pouco até ficar tudo pronto.</p>
-            <button class="btn-não" onclick="voltarConteudoInicial()">Voltar</button>
         </div>
     </div>
 
+    <!-- Botão de música (fora do conteúdo inicial) -->
+    <audio id="musica" src="https://raw.githubusercontent.com/Millwna/teste/main/shea.mp3"></audio>
+    <button id="btnMusica" class="btnMusica" onclick="toggleMusica()">▶ Play</button>
+
     <script>
         function mostrarNovoConteudo() {
-            // Esconde o conteúdo inicial
             document.getElementById('conteudo-inicial').classList.add('hidden');
-            // Mostra o novo conteúdo
             document.getElementById('novo-conteudo').classList.remove('hidden');
         }
 
@@ -83,13 +118,20 @@
             alert("Você escolheu não continuar.");
         }
 
-        function voltarConteudoInicial() {
-            // Esconde o novo conteúdo
-            document.getElementById('novo-conteudo').classList.add('hidden');
-            // Mostra o conteúdo inicial 
-            document.getElementById('conteudo-inicial').classList.remove('hidden'); 
-        } 
+        function toggleMusica() {
+            var musica = document.getElementById("musica");
+            var botao = document.getElementById("btnMusica");
+
+            if (musica.paused) {
+                musica.play();
+                botao.innerText = "⏸ Pause";
+            } else {
+                musica.pause();
+                botao.innerText = "▶ Play";
+            }
+        }
     </script>
+
 </body>
 
 </html>
