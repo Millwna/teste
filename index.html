@@ -143,17 +143,26 @@
             <img src="https://raw.githubusercontent.com/Millwna/teste/main/estrelas.png" alt="Imagem com efeito">
         </div>
         <div>
-            <button class="btn-sim" onclick="mostrarTerceiraPagina()"><b>⋙</b></button>
+            <button class="btn-não" onclick="voltarConteudoInicial()">⬅</button>
+            <button class="btn-sim" onclick="mostrarTerceiraPagina()"><b>➞</b></button>
         </div>
     </div>
 
     <!-- Terceira página -->
     <div id="terceira-pagina" class="next-content">
         <div class="imagem-container">
-            <img src="https://raw.githubusercontent.com/Millwna/teste/main/nova-imagem.jpg" alt="Nova Imagem">
+            <img src="https://www.karinaaviamentos.com/wp-content/uploads/2024/07/STITCH-E-ANGEL-FOTO.jpg" alt="Nova Imagem">
         </div>
         <div>
-            <h1>Bem-vindo à terceira página!</h1>
+            <button class="btn-não" onclick="voltarNovoConteudo()">⬅</button>
+            <button class="btn-sim" onclick="mostrarQuartaPagina()"><b>➞</b></button>
+        </div>
+    </div>
+
+    <!-- Quarta página -->
+    <div id="quarta-pagina" class="next-content">
+        <div class="imagem-container">
+            <img src="https://raw.githubusercontent.com/Millwna/teste/main/estrelas.png" alt="Imagem com efeito">
         </div>
     </div>
 
@@ -187,6 +196,25 @@
             // Ocultar o segundo conteúdo e mostrar a terceira página
             document.getElementById('novo-conteudo').style.display = 'none';
             document.getElementById('terceira-pagina').style.display = 'block';
+        }
+
+        function mostrarQuartaPagina() {
+            // Ocultar a terceira página e mostrar a quarta página
+            document.getElementById('terceira-pagina').style.display = 'none';
+            document.getElementById('quarta-pagina').style.display = 'block';
+        }
+
+        function voltarConteudoInicial() {
+            // Voltar para o conteúdo inicial
+            document.getElementById('novo-conteudo').style.display = 'none';
+            document.getElementById('conteudo-inicial').style.display = 'flex';
+            document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Millwna/teste/main/stitch.jpg')";
+        }
+
+        function voltarNovoConteudo() {
+            // Voltar para a segunda página
+            document.getElementById('terceira-pagina').style.display = 'none';
+            document.getElementById('novo-conteudo').style.display = 'block';
         }
 
         function permanecer() {
