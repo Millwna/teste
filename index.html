@@ -18,18 +18,13 @@
         }
 
         #conteudo-inicial {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ocupa 100% da altura da tela */
-    text-align: center;
-}
-
-button {
-    margin: 10px; /* Distância entre os botões */
-}
-
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
 
         button {
             color: #fff;
@@ -50,42 +45,28 @@ button {
             background-color: #45a5ff;
         }
 
-      .btnMusica {
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin: 5px;
-    background-color: #fa69ff;
-    position: fixed;      /* Faz o botão ficar fixo na tela */
-    bottom: 20px;         /* Coloca o botão a 20px da parte inferior */
-    right: 20px;          /* Coloca o botão 20px a partir do canto direito */
-    transform: translateX(0); /* Remove qualquer transformação adicional */
-}
-
-
+        .btnMusica {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 5px;
+            background-color: #fa69ff;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
 
         .btnMusica:hover {
-            background-color: #f051d1;  /* Efeito de hover para quando passar o mouse */
-            border-color: #f051d1;      /* Muda a cor da borda quando o mouse passa */
+            background-color: #f051d1;
         }
 
         .message {
             text-align: center;
             color: rgb(255, 162, 56);
             padding-top: 10%;
-            margin: 20px auto;
-            max-width: 400px;
-            font-size: 30px;
-            font-family: 'Franklin Gothic Medium', sans-serif;
-        }
-
-        .mensagem {
-            text-align: center;
-            color: rgb(255, 162, 56);
-            padding-top: 20%;
             margin: 20px auto;
             max-width: 400px;
             font-size: 30px;
@@ -106,16 +87,8 @@ button {
             <h1>Você quer continuar?</h1>
         </div>
         <div class="flex items-center justify-center gap-4">
-            <button class="btn-sim" onclick="mostrarNovoConteudo()">Sim</button>
-            <button class="btn-não" onclick="permanecer()">Não</button>
-        </div>
-    </div>
-
-    <!-- Novo conteúdo (inicialmente escondido) -->
-    <div id="novo-conteudo" class="hidden">
-        <div class="mensagem">
-            <h1>Curiosa você, né?</h1>
-            <p>Vai ter que esperar um pouco até ficar tudo pronto.</p>
+            <button class="btn-sim" onclick="alert('Você escolheu continuar.')"><b>Sim</b></button>
+            <button class="btn-não" onclick="alert('Você escolheu não continuar.')"><b>Não</b></button>
         </div>
     </div>
 
@@ -124,25 +97,16 @@ button {
     <button id="btnMusica" class="btnMusica" onclick="toggleMusica()">▶</button>
 
     <script>
-        function mostrarNovoConteudo() {
-            document.getElementById('conteudo-inicial').classList.add('hidden');
-            document.getElementById('novo-conteudo').classList.remove('hidden');
-        }
-
-        function permanecer() {
-            alert("Você escolheu não continuar.");
-        }
-
         function toggleMusica() {
             var musica = document.getElementById("musica");
             var botao = document.getElementById("btnMusica");
 
             if (musica.paused) {
                 musica.play();
-                botao.innerText = "❚❚";
+                botao.innerText = "❚❚";  // Muda o texto para "Pause" quando a música toca
             } else {
                 musica.pause();
-                botao.innerText = "▶";
+                botao.innerText = "▶";   // Muda o texto para "Play" quando a música está pausada
             }
         }
     </script>
