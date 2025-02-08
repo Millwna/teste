@@ -74,6 +74,7 @@
         }
 
         .message {
+            color: #f051d1;
             text-align: center;
             padding-top: 10%;
             margin: 20px auto;
@@ -136,10 +137,23 @@
         </div>
     </div>
 
-    <!-- Novo conteúdo -->
+    <!-- Novo conteúdo (Segunda página) -->
     <div id="novo-conteudo" class="next-content">
         <div class="imagem-container">
             <img src="https://raw.githubusercontent.com/Millwna/teste/main/estrelas.png" alt="Imagem com efeito">
+        </div>
+        <div>
+            <button class="btn-sim" onclick="mostrarTerceiraPagina()"><b>⋙</b></button>
+        </div>
+    </div>
+
+    <!-- Terceira página -->
+    <div id="terceira-pagina" class="next-content">
+        <div class="imagem-container">
+            <img src="https://raw.githubusercontent.com/Millwna/teste/main/nova-imagem.jpg" alt="Nova Imagem">
+        </div>
+        <div>
+            <h1>Bem-vindo à terceira página!</h1>
         </div>
     </div>
 
@@ -167,6 +181,12 @@
                 const imagemContainer = document.querySelector('.imagem-container');
                 imagemContainer.style.opacity = 1;
             }, 500);  // Atraso de 0.5 segundos
+        }
+
+        function mostrarTerceiraPagina() {
+            // Ocultar o segundo conteúdo e mostrar a terceira página
+            document.getElementById('novo-conteudo').style.display = 'none';
+            document.getElementById('terceira-pagina').style.display = 'block';
         }
 
         function permanecer() {
