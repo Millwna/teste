@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testando</title>
+    <title>Para Você.</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
@@ -26,8 +26,17 @@
             height: 100vh;
             text-align: center;
             opacity: 0;
-            color: rgba(255, 162, 56, 0); /* Cor inicial bem clara */
+            color: rgba(255, 162, 56, 0);
             transition: opacity 3s ease-out, color 3s ease-out;
+        }
+
+        #novo-conteudo {
+            background-color: #fee2f1;
+        }
+
+        #terceira-pagina {
+            background-color: #fee2f1;
+            background-size: cover;
         }
 
         button {
@@ -54,18 +63,14 @@
         }
 
         .btnMusica {
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            margin: 5px;
-            background-color: #fa69ff;
             position: fixed;
             bottom: 20px;
             right: 20px;
-            transform: translateX(0);
+            background-color: #fa69ff;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
         }
 
         .btnMusica:hover {
@@ -96,37 +101,121 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            opacity: 0;
+            opacity: 1; /* Altere para 1 para garantir que seja visível */
             transition: opacity 3s ease-out;
             width: 100%;
-            overflow: hidden; /* Garante que nada ultrapasse os limites da tela */
+            overflow: hidden;
+            position: relative; /* Para o posicionamento do contador */
         }
 
         img {
-            width: 100%; /* Faz com que a imagem ocupe toda a largura da tela */
-            height: 100%; /* Ajusta a altura da imagem para 100% da altura da tela */
-            object-fit: contain; /* Ajusta a imagem sem distorção */
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
-        /* Ajustes para dispositivos menores */
         @media (max-width: 768px) {
             .imagem-container {
-                height: 80vh; /* Ajusta a altura da imagem para 80% da tela */
+                height: 80vh;
             }
 
             img {
-                width: 100%; /* Faz a imagem ocupar toda a largura disponível */
-                height: auto; /* Garante que a altura da imagem seja proporcional */
-                object-fit: contain; /* Garante que a imagem não distorça */
+                width: 100%;
+                height: auto;
+                object-fit: contain;
             }
         }
 
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .card {
+            width: 200px;
+            height: 250px;
+            perspective: 1000px; /* Para o efeito 3D */
+            cursor: pointer;
+            border-radius: 15px; /* Arredondar as bordas do card */
+            overflow: hidden;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d; /* Manter a perspectiva 3D */
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg); /* Giro no eixo Y */
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Esconde o lado de trás quando não está virado */
+            border-radius: 15px;
+        }
+
+        .card-back {
+            transform: rotateY(180deg); /* Inicia virado para trás */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* Cor de fundo da parte de trás */
+        }
+
+        .card img {
+            width: 100%; /* A imagem ocupa toda a largura do card */
+            height: 100%; /* A imagem ocupa toda a altura do card */
+            object-fit: cover; /* A imagem cobre o card sem distorcer */
+            position: absolute; /* A imagem fica atrás do texto */
+            top: 0; /* Alinha a imagem ao topo do card */
+            left: 0; /* Alinha a imagem à esquerda do card */
+        }
+
+        .card h3 {
+            font-size: 18px;
+            color: #333;
+            position: relative; /* O texto fica acima da imagem */
+            z-index: 1; /* Garante que o texto esteja acima da imagem */
+        }
+
+        .card-content {
+            display: none;
+            margin-top: 15px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        #contador {
+            font-size: 24px; /* Tamanho da fonte */
+    color: rgb(0, 0, 0); /* Cor do texto */
+    position: absolute; /* Posicionamento absoluto */
+    top: 10%; /* Ajuste para 10% do topo */
+    left: 50%; /* 50% da esquerda */
+    transform: translate(-50%, 0); /* Centraliza horizontalmente */
+    background-color: rgba(255, 170, 227, 0.5); /* Fundo semi-transparente */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
+    font-family: 'Arial', sans-serif; /* Fonte */
+    text-align: center; /* Centraliza o texto */
+    z-index: 10; /* Garante que fique acima da imagem */
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Conteúdo inicial -->
     <div id="conteudo-inicial">
         <div id="título" class="message">
             <h1>Você quer continuar?</h1>
@@ -137,9 +226,9 @@
         </div>
     </div>
 
-    <!-- Novo conteúdo (Segunda página) -->
     <div id="novo-conteudo" class="next-content">
         <div class="imagem-container">
+            <div id="contador"></div>
             <img src="https://raw.githubusercontent.com/Millwna/teste/main/estrelas.png" alt="Imagem com efeito">
         </div>
         <div>
@@ -148,10 +237,41 @@
         </div>
     </div>
 
-    <!-- Terceira página -->
     <div id="terceira-pagina" class="next-content">
-        <div class="imagem-container">
-            <img src="https://www.karinaaviamentos.com/wp-content/uploads/2024/07/STITCH-E-ANGEL-FOTO.jpg" alt="Nova Imagem">
+        <div class="card-container">
+            <div class="card" onclick="mostrarConteudo(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://raw.githubusercontent.com/Millwna/teste/main/s.jpg" alt="Ícone 1">
+                        <div class="card-content"></div>
+                    </div>
+                    <div class="card-back">
+                        <img src="https://raw.githubusercontent.com/Millwna/teste/main/ss.jpg" alt="Imagem Traseira 1">
+                    </div>
+                </div>
+            </div>
+            <div class="card" onclick="mostrarConteudo(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://raw.githubusercontent.com/Millwna/teste/main/s2.jpg" alt="Ícone 2">
+                        <div class="card-content">Conteúdo do Card 2</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="https://via.placeholder.com/200" alt="Imagem Traseira 2">
+                    </div>
+                </div>
+            </div>
+            <div class="card" onclick="mostrarConteudo(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://raw.githubusercontent.com/Millwna/teste/main/s3.jpg" alt="Ícone 3">
+                        <div class="card-content">Conteúdo do Card 3</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="https://via.placeholder.com/200" alt="Imagem Traseira 3">
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             <button class="btn-não" onclick="voltarNovoConteudo()">⬅</button>
@@ -159,62 +279,56 @@
         </div>
     </div>
 
-    <!-- Quarta página -->
     <div id="quarta-pagina" class="next-content">
-        <div class="imagem-container">
-            <img src="https://raw.githubusercontent.com/Millwna/teste/main/estrelas.png" alt="Imagem com efeito">
-        </div>
+        <button class="btn-não" onclick="voltarTerceiraPagina()">⬅</button>
     </div>
 
-    <!-- Botão de música (fora do conteúdo inicial) -->
     <audio id="musica" src="https://raw.githubusercontent.com/Millwna/teste/main/shea.mp3"></audio>
     <button id="btnMusica" class="btnMusica" onclick="toggleMusica()">▶</button>
 
     <script>
-        // Mostrar o conteúdo inicial após 3 segundos com o efeito de "fade-in"
         setTimeout(function () {
             const conteudo = document.getElementById('conteudo-inicial');
             conteudo.style.display = 'flex';
-            conteudo.style.opacity = 1; // A opacidade muda para 1 para aparecer suavemente
-            conteudo.style.color = 'rgb(255, 162, 56)'; // Cor vai para o tom final
+            conteudo.style.opacity = 1;
+            conteudo.style.color = 'rgb(255, 162, 56)';
         }, 3000);
 
         function mostrarNovoConteudo() {
-            // Ocultar o conteúdo inicial e mostrar a próxima "página"
             document.getElementById('conteudo-inicial').style.display = 'none';
-            document.body.style.backgroundImage = "none"; /* Remove o fundo da primeira página */
+            document.body.style.backgroundImage = "none";
             document.getElementById('novo-conteudo').style.display = 'block';
 
-            // Atrasar o efeito de fade-in da imagem
             setTimeout(function () {
                 const imagemContainer = document.querySelector('.imagem-container');
-                imagemContainer.style.opacity = 1;
-            }, 500);  // Atraso de 0.5 segundos
+                imagemContainer.style.opacity = 1; // Muda a opacidade para 1
+            }, 500);
         }
 
         function mostrarTerceiraPagina() {
-            // Ocultar o segundo conteúdo e mostrar a terceira página
             document.getElementById('novo-conteudo').style.display = 'none';
             document.getElementById('terceira-pagina').style.display = 'block';
         }
 
         function mostrarQuartaPagina() {
-            // Ocultar a terceira página e mostrar a quarta página
             document.getElementById('terceira-pagina').style.display = 'none';
             document.getElementById('quarta-pagina').style.display = 'block';
         }
 
         function voltarConteudoInicial() {
-            // Voltar para o conteúdo inicial
             document.getElementById('novo-conteudo').style.display = 'none';
             document.getElementById('conteudo-inicial').style.display = 'flex';
             document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Millwna/teste/main/stitch.jpg')";
         }
 
         function voltarNovoConteudo() {
-            // Voltar para a segunda página
             document.getElementById('terceira-pagina').style.display = 'none';
             document.getElementById('novo-conteudo').style.display = 'block';
+        }
+
+        function voltarTerceiraPagina() {
+            document.getElementById('quarta-pagina').style.display = 'none';
+            document.getElementById('terceira-pagina').style.display = 'block';
         }
 
         function permanecer() {
@@ -233,6 +347,38 @@
                 botao.innerText = "▶";
             }
         }
+
+        function mostrarConteudo(card) {
+            card.classList.toggle('flipped'); // Adiciona ou remove a classe 'flipped'
+        }
+
+        // Função para atualizar o contador
+        function atualizarContador() {
+            const dataInicial = new Date('2021-06-02T16:08:40'); // Data de início
+            const dataAtual = new Date(); // Data atual
+
+            // Calcula a diferença em milissegundos
+            const diffTime = dataAtual - dataInicial;
+
+            // Converte a diferença para segundos
+            const totalSegundos = Math.floor(diffTime / 1000);
+
+            // Calcula dias, horas, minutos e segundos
+            const dias = Math.floor(totalSegundos / (3600 * 24));
+            const horas = Math.floor((totalSegundos % (3600 * 24)) / 3600);
+            const minutos = Math.floor((totalSegundos % 3600) / 60);
+            const segundos = totalSegundos % 60;
+
+            // Atualiza o elemento do contador
+            document.getElementById('contador').innerText = 
+                `${dias} dias ${horas} horas: ${minutos} minutos: ${segundos} segundos
+                se passaram desse momento até então`;
+        }
+
+        // Chama a função para iniciar o contador
+        atualizarContador();
+        // Atualiza o contador a cada segundo
+        setInterval(atualizarContador, 1000);
     </script>
 
 </body>
