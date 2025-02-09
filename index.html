@@ -35,7 +35,6 @@
 
         #terceira-pagina {
             background-color: #fee2f1;
-            background-size: cover;
             display: none; /* Inicialmente escondido */
         }
 
@@ -136,12 +135,14 @@
                 top: 5%;
             }
         }
-h2 {
+
+        h2 {
             color: #f051d1;
             text-align: center;
             font-size: 15px; /* Ajuste o tamanho conforme necessário */
             margin-bottom: 20px; /* Espaço abaixo da mensagem */
         }
+
         .card-container {
             display: flex;
             justify-content: center;
@@ -215,19 +216,43 @@ h2 {
             color: #333;
         }
 
-        /* Mantém as dimensões dos cards em telas menores */
-        @media (max-width: 768px) {
-            .card {
-                width: 200px; /* Mantém a largura fixa */
-                height: 250px; /* Mantém a altura fixa */
-            }
-
-            .card-container {
-                flex-direction: row; /* Mantém a disposição em linha */
-                justify-content: center; /* Centraliza os cards */
-                align-items: center; /* Centraliza os cards */
-            }
+        /* Estilo do quiz na quarta página */
+        #quarta-pagina {
+            background-color: #fee2f1; /* Cor de fundo rosa para a quarta página */
+            padding: 20px; /* Adiciona um pouco de preenchimento */
+            display: none; /* Inicialmente escondido */
+            height: 100vh; /* Ocupa toda a altura da tela */
         }
+
+        .quiz-container {
+            background-color: black; /* Cor do container do quiz */
+            color: pink; /* Cor do texto dentro do container */
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%; /* Largura reduzida */
+            max-width: 600px; /* Largura máxima */
+            margin: 0 auto; /* Centraliza o container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .option {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
     </style>
 </head>
 
@@ -298,13 +323,38 @@ h2 {
     </div>
 
     <div id="quarta-pagina" class="next-content">
-        <button class="btn-não" onclick="voltarTerceiraPagina()">⇦</button>
+        <div class="quiz-container">
+            <h2 id="pergunta"></h2>
+            <div id="opcoes"></div>
+            <div id="resultado"></div>
+            <button class="btn-não" onclick="voltarTerceiraPagina()">⇦</button>
+        </div>
     </div>
 
     <audio id="musica" src="https://raw.githubusercontent.com/Millwna/teste/main/shea.mp3"></audio>
     <button id="btnMusica" class="btnMusica" onclick="toggleMusica()">▶</button>
 
     <script>
+        const perguntas = [
+            {
+                pergunta: "Qual era a bebida que você estava tomando na nossa primeira call?",
+                opcoes: ["Cerveja", "Gin", "Chopp de Vinho", "Vodka"],
+                respostaCorreta: "Chopp de Vinho"
+            },
+            {
+                pergunta: "Na hora que você foi dizer que gostava de mim, cantou uma música. Qual foi?",
+                opcoes: ["A Carta", "Inesquecível", "Reinventar", "Na sua estante"],
+                respostaCorreta: "Reinventar"
+            },
+            {
+                pergunta: "Quando ouvíamos música juntas, tinha uma que você não deixava de fora. Qual era?",
+                opcoes: ["Radar", "Megastar", "Carta Branca", "Todo Mundo Menos Você"],
+                respostaCorreta: "Radar"
+            }
+        ];
+
+        let perguntaAtual = 0;
+
         setTimeout(function () {
             const conteudo = document.getElementById('conteudo-inicial');
             conteudo.style.display = 'flex';
@@ -330,7 +380,47 @@ h2 {
 
         function mostrarQuartaPagina() {
             document.getElementById('terceira-pagina').style.display = 'none';
+            carregarPergunta(perguntaAtual);
             document.getElementById('quarta-pagina').style.display = 'block';
+        }
+
+        function carregarPergunta(indice) {
+            const pergunta = perguntas[indice];
+            document.getElementById('pergunta').innerText = pergunta.pergunta;
+            const opcoesDiv = document.getElementById('opcoes');
+            opcoesDiv.innerHTML = ""; // Limpar opções anteriores
+
+            pergunta.opcoes.forEach(opcao => {
+                const botaoOpcao = document.createElement('button');
+                botaoOpcao.classList.add('option');
+                botaoOpcao.innerText = opcao;
+                botaoOpcao.onclick = () => verificarResposta(opcao);
+                opcoesDiv.appendChild(botaoOpcao);
+            });
+        }
+
+        function verificarResposta(opcao) {
+            const resultado = document.getElementById('resultado');
+            const pergunta = perguntas[perguntaAtual];
+
+            if (opcao === pergunta.respostaCorreta) {
+                resultado.innerHTML = "<b>Correto!</b>";
+                resultado.style.color = "green";
+            } else {
+                resultado.innerHTML = `<b>Errou! A resposta certa é: ${pergunta.respostaCorreta}</b>`;
+                resultado.style.color = "red";
+            }
+
+            perguntaAtual++;
+            if (perguntaAtual < perguntas.length) {
+                setTimeout(() => {
+                    carregarPergunta(perguntaAtual);
+                    resultado.innerHTML = ""; // Limpar resultado anterior
+                }, 2000);
+            } else {
+                resultado.innerHTML += "<br><b>Fim do quiz!</b>";
+                // Aqui você pode adicionar uma opção para reiniciar o quiz ou voltar
+            }
         }
 
         function voltarConteudoInicial() {
