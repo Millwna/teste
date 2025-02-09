@@ -17,7 +17,6 @@
             height: 100vh;
         }
 
-        /* Conteúdo inicial */
         #conteudo-inicial {
             display: flex;
             flex-direction: column;
@@ -37,6 +36,7 @@
         #terceira-pagina {
             background-color: #fee2f1;
             background-size: cover;
+            display: none; /* Inicialmente escondido */
         }
 
         button {
@@ -101,11 +101,11 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            opacity: 1; /* Altere para 1 para garantir que seja visível */
+            opacity: 1;
             transition: opacity 3s ease-out;
             width: 100%;
             overflow: hidden;
-            position: relative; /* Para o posicionamento do contador */
+            position: relative;
         }
 
         img {
@@ -114,23 +114,27 @@
             object-fit: contain;
         }
 
-        @media (max-width: 768px) {
-            .imagem-container {
-                height: 80vh;
-            }
-
-            img {
-                width: 100%;
-                height: auto;
-                object-fit: contain;
-            }
+        #contador {
+            font-size: 15px;
+            color: rgb(0, 0, 0);
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background-color: rgba(255, 170, 227, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            z-index: 10;
         }
 
-        h2 {
-            color: #f051d1;
-            text-align: center;
-            font-size: 24px; /* Ajuste o tamanho conforme necessário */
-            margin-bottom: 20px; /* Espaço abaixo da mensagem */
+        @media (max-width: 768px) {
+            #contador {
+                font-size: 18px;
+                top: 5%;
+            }
         }
 
         .card-container {
@@ -140,15 +144,18 @@
             gap: 20px;
             flex-wrap: wrap;
             padding: 20px;
+            overflow-x: auto; /* Permite rolagem horizontal se necessário */
         }
 
         .card {
-            width: 200px;
-            height: 250px;
-            perspective: 1000px; /* Para o efeito 3D */
+            width: 200px; /* Largura fixa */
+            height: 250px; /* Altura fixa */
+            perspective: 1000px;
             cursor: pointer;
-            border-radius: 15px; /* Arredondar as bordas do card */
+            border-radius: 15px;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .card-inner {
@@ -156,11 +163,11 @@
             width: 100%;
             height: 100%;
             transition: transform 0.6s;
-            transform-style: preserve-3d; /* Manter a perspectiva 3D */
+            transform-style: preserve-3d;
         }
 
         .card.flipped .card-inner {
-            transform: rotateY(180deg); /* Giro no eixo Y */
+            transform: rotateY(180deg);
         }
 
         .card-front,
@@ -168,32 +175,32 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* Esconde o lado de trás quando não está virado */
+            backface-visibility: hidden;
             border-radius: 15px;
-        }
-
-        .card-back {
-            transform: rotateY(180deg); /* Inicia virado para trás */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0; /* Cor de fundo da parte de trás */
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: #f0f0f0;
         }
 
         .card img {
-            width: 100%; /* A imagem ocupa toda a largura do card */
-            height: 100%; /* A imagem ocupa toda a altura do card */
-            object-fit: cover; /* A imagem cobre o card sem distorcer */
-            position: absolute; /* A imagem fica atrás do texto */
-            top: 0; /* Alinha a imagem ao topo do card */
-            left: 0; /* Alinha a imagem à esquerda do card */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .card h3 {
             font-size: 18px;
             color: #333;
-            position: relative; /* O texto fica acima da imagem */
-            z-index: 1; /* Garante que o texto esteja acima da imagem */
+            position: relative;
+            z-index: 1;
         }
 
         .card-content {
@@ -203,35 +210,16 @@
             color: #333;
         }
 
-        #contador {
-            font-size: 15px; /* Tamanho da fonte */
-            color: rgb(0, 0, 0); /* Cor do texto */
-            position: absolute; /* Posicionamento absoluto */
-            top: 10%; /* Ajuste para 10% do topo */
-            left: 50%; /* 50% da esquerda */
-            transform: translate(-50%, 0); /* Centraliza horizontalmente */
-            background-color: rgba(255, 170, 227, 0.5); /* Fundo semi-transparente */
-            padding: 10px; /* Espaçamento interno */
-            border-radius: 5px; /* Bordas arredondadas */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
-            font-family: 'Arial', sans-serif; /* Fonte */
-            text-align: center; /* Centraliza o texto */
-            z-index: 10; /* Garante que fique acima da imagem */
-        }
-
+        /* Mantém as dimensões dos cards em telas menores */
         @media (max-width: 768px) {
-            #contador {
-                font-size: 18px; /* Tamanho da fonte reduzido para dispositivos móveis */
-                top: 5%; /* Ajuste a posição para um pouco mais acima */
-            }
-
             .card {
-                flex: 1 1 100%; /* Cards ocupam 100% da largura em telas pequenas */
-                max-width: 100%; /* Largura máxima para telas pequenas */
+                width: 200px; /* Mantém a largura fixa */
+                height: 250px; /* Mantém a altura fixa */
             }
 
             .card-container {
-                flex-direction: column; /* Alinha os cards verticalmente em telas menores */
+                flex-direction: row; /* Mantém a disposição em linha */
+                justify-content: center; /* Centraliza os cards */
                 align-items: center; /* Centraliza os cards */
             }
         }
@@ -262,13 +250,13 @@
     </div>
 
     <div id="terceira-pagina" class="next-content">
-        <h2 class="text-center text-2xl font-bold mb-4">Clique em um card</h2> <!-- Mensagem acima dos cards -->
+        <h2 class="text-center text-2xl font-bold mb-4">Clique em um card</h2>
         <div class="card-container">
             <div class="card" onclick="mostrarConteudo(this)">
                 <div class="card-inner">
                     <div class="card-front">
                         <img src="https://raw.githubusercontent.com/Millwna/teste/main/s.jpg" alt="Ícone 1">
-                        <div class="card-content"></div>
+                        <div class="card-content">Mensagem 1</div>
                     </div>
                     <div class="card-back">
                         <img src="https://raw.githubusercontent.com/Millwna/teste/main/ss.jpg" alt="Imagem Traseira 1">
@@ -279,7 +267,7 @@
                 <div class="card-inner">
                     <div class="card-front">
                         <img src="https://raw.githubusercontent.com/Millwna/teste/main/s2.jpg" alt="Ícone 2">
-                        <div class="card-content">Conteúdo do Card 2</div>
+                        <div class="card-content">Mensagem 2</div>
                     </div>
                     <div class="card-back">
                         <img src="https://raw.githubusercontent.com/Millwna/teste/main/s22.jpg" alt="Imagem Traseira 2">
@@ -290,7 +278,7 @@
                 <div class="card-inner">
                     <div class="card-front">
                         <img src="https://raw.githubusercontent.com/Millwna/teste/main/s3.jpg" alt="Ícone 3">
-                        <div class="card-content">Conteúdo do Card 3</div>
+                        <div class="card-content">Mensagem 3</div>
                     </div>
                     <div class="card-back">
                         <img src="https://raw.githubusercontent.com/Millwna/teste/main/s33.jpg" alt="Imagem Traseira 3">
@@ -303,7 +291,6 @@
             <button class="btn-sim" onclick="mostrarQuartaPagina()"><b>⇨</b></button>
         </div>
     </div>
-    
 
     <div id="quarta-pagina" class="next-content">
         <button class="btn-não" onclick="voltarTerceiraPagina()">⇦</button>
@@ -327,7 +314,7 @@
 
             setTimeout(function () {
                 const imagemContainer = document.querySelector('.imagem-container');
-                imagemContainer.style.opacity = 1; // Muda a opacidade para 1
+                imagemContainer.style.opacity = 1;
             }, 500);
         }
 
@@ -375,38 +362,24 @@
         }
 
         function mostrarConteudo(card) {
-            card.classList.toggle('flipped'); // Adiciona ou remove a classe 'flipped'
+            card.classList.toggle('flipped');
         }
 
         function atualizarContador() {
-            // Data inicial: 02/06/2021, 16:08:40 (horário de Brasília)
-            const dataInicial = new Date('2021-06-02T16:08:40-03:00'); // -03:00 é o fuso horário de Brasília
-
-            // Data atual
+            const dataInicial = new Date('2021-06-02T16:08:40-03:00');
             const dataAtual = new Date();
-
-            // Calcula a diferença em milissegundos
             const diffTime = dataAtual - dataInicial;
-
-            // Converte a diferença para segundos
             const totalSegundos = Math.floor(diffTime / 1000);
+            const dias = Math.floor(totalSegundos / (3600 * 24));
+            const horas = Math.floor((totalSegundos % (3600 * 24)) / 3600);
+            const minutos = Math.floor((totalSegundos % 3600) / 60);
+            const segundos = totalSegundos % 60;
 
-            // Calcula dias, horas, minutos e segundos
-            const dias = Math.floor(totalSegundos / (3600 * 24)); // Total de dias
-            const horas = Math.floor((totalSegundos % (3600 * 24)) / 3600); // Horas restantes
-            const minutos = Math.floor((totalSegundos % 3600) / 60); // Minutos restantes
-            const segundos = totalSegundos % 60; // Segundos restantes
-
-            // Atualiza o elemento do contador
             document.getElementById('contador').innerHTML =
-                `<b>${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos<br> 
-                se passaram desde esse dia até então.</br></b>`;
+                `<b>${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos<br> se passaram desde esse dia até então.</br></b>`;
         }
 
-        // Inicia o contador
         atualizarContador();
-
-        // Atualiza o contador a cada segundo
         setInterval(atualizarContador, 1000);
     </script>
 
