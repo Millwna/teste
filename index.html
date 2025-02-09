@@ -126,11 +126,12 @@
             }
         }
 
-        h2 {color: #f051d1;
-    text-align: center;
-    font-size: 24px; /* Ajuste o tamanho conforme necessário */
-    margin-bottom: 20px; /* Espaço abaixo da mensagem */
-}
+        h2 {
+            color: #f051d1;
+            text-align: center;
+            font-size: 24px; /* Ajuste o tamanho conforme necessário */
+            margin-bottom: 20px; /* Espaço abaixo da mensagem */
+        }
 
         .card-container {
             display: flex;
@@ -227,6 +228,11 @@
             .card {
                 flex: 1 1 100%; /* Cards ocupam 100% da largura em telas pequenas */
                 max-width: 100%; /* Largura máxima para telas pequenas */
+            }
+
+            .card-container {
+                flex-direction: column; /* Alinha os cards verticalmente em telas menores */
+                align-items: center; /* Centraliza os cards */
             }
         }
     </style>
@@ -373,39 +379,36 @@
         }
 
         function atualizarContador() {
-    // Data inicial: 02/06/2021, 16:08:40 (horário de Brasília)
-    const dataInicial = new Date('2021-06-02T16:08:40-03:00'); // -03:00 é o fuso horário de Brasília
+            // Data inicial: 02/06/2021, 16:08:40 (horário de Brasília)
+            const dataInicial = new Date('2021-06-02T16:08:40-03:00'); // -03:00 é o fuso horário de Brasília
 
-    // Data atual
-    const dataAtual = new Date();
+            // Data atual
+            const dataAtual = new Date();
 
-    // Calcula a diferença em milissegundos
-    const diffTime = dataAtual - dataInicial;
+            // Calcula a diferença em milissegundos
+            const diffTime = dataAtual - dataInicial;
 
-    // Converte a diferença para segundos
-    const totalSegundos = Math.floor(diffTime / 1000);
+            // Converte a diferença para segundos
+            const totalSegundos = Math.floor(diffTime / 1000);
 
-    // Calcula dias, horas, minutos e segundos
-    const dias = Math.floor(totalSegundos / (3600 * 24)); // Total de dias
-    const horas = Math.floor((totalSegundos % (3600 * 24)) / 3600); // Horas restantes
-    const minutos = Math.floor((totalSegundos % 3600) / 60); // Minutos restantes
-    const segundos = totalSegundos % 60; // Segundos restantes
+            // Calcula dias, horas, minutos e segundos
+            const dias = Math.floor(totalSegundos / (3600 * 24)); // Total de dias
+            const horas = Math.floor((totalSegundos % (3600 * 24)) / 3600); // Horas restantes
+            const minutos = Math.floor((totalSegundos % 3600) / 60); // Minutos restantes
+            const segundos = totalSegundos % 60; // Segundos restantes
 
-    // Atualiza o elemento do contador
-    document.getElementById('contador').innerHTML =
-        `<b>${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos<br> 
-        se passaram desde esse dia até então.</br></b>`;
-}
+            // Atualiza o elemento do contador
+            document.getElementById('contador').innerHTML =
+                `<b>${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos<br> 
+                se passaram desde esse dia até então.</br></b>`;
+        }
 
-// Inicia o contador
-atualizarContador();
+        // Inicia o contador
+        atualizarContador();
 
-// Atualiza o contador a cada segundo
-setInterval(atualizarContador, 1000);
-
-
-
-</script>
+        // Atualiza o contador a cada segundo
+        setInterval(atualizarContador, 1000);
+    </script>
 
 </body>
 
