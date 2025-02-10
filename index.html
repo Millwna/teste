@@ -270,6 +270,26 @@
 
 #quinta-pagina { background-color: #fee2f1; /* Cor de fundo rosa para a quinta página */ padding: 20px; /* Adiciona um pouco de preenchimento */ display: none; /* Inicialmente escondido */ text-align: center; /* Centraliza o texto */ } .youtube-playlist { margin-top: 20px; }
 
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}
+
+.coracao {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('https://raw.githubusercontent.com/Millwna/teste/main/coracao.png') no-repeat center center;
+    background-size: contain;
+    animation: explode 1s forwards;
+}
+
     </style>
 </head>
 
@@ -339,7 +359,7 @@
         </div>
     </div>
 
-    <div id="quarta-pagina" class="next-content fade-in h-screen" style="background-color: #fee2f1;">
+    <div id="quarta-pagina" class="next-content fade-in h-screen" style="background-color: #fee2f1; min-height: 100vh;">
     <h2><b>Agora um quiz de memórias</b></h2>
     <div class="quiz-container">
         <h2 id="pergunta"></h2>
@@ -357,9 +377,11 @@
     </div>
     <div>
         <button class="btn-não" onclick="voltarQuartaPagina()">⇦</button>
+        <button class="btn-sim" onclick="mostrarSextaPagina()"><b>⇨</b></button>
     </div>
 </div>
- 
+<div id="sexta-pagina" class="next-content fade-in h-screen bg-cover" style="background-image: url('https://raw.githubusercontent.com/Millwna/teste/main/Picsart_25-02-09_22-39-20-668.jpg');"> <div class="flex flex-col justify-center items-center h-full text-center text-pink-500"> <!-- Texto rosa --> <h1 class="text-4xl font-bold mb-4">Para você.</h1> <p class="text-lg"><b>E é isso. Espero de verdade que você tenha gostado, foi simples mas usei todo meu carinho, coração e paixão.</b></p> <p class="text-lg"><b>Obrigado por tudo e por todos os momentos incríveis que compartilhamos! Garanto pra você que todos eles estão guardados na minha memória. ♥️</b></p> <button class="btn-não" onclick="voltarQuintaPagina()">⇦</button> <div id="coracoes-container" class="absolute inset-0 pointer-events-none"></div> </div> </div>
+
  <audio id="musica" src="https://raw.githubusercontent.com/Millwna/teste/main/shea.mp3"></audio>
     <button id="btnMusica" class="btnMusica" onclick="toggleMusica()">▶</button>
 
@@ -523,6 +545,51 @@
         atualizarContador();
         setInterval(atualizarContador, 1000);
 function mostrarQuintaPagina() { document.getElementById('quarta-pagina').style.display = 'none'; const quintaPagina = document.getElementById('quinta-pagina'); quintaPagina.style.display = 'block'; setTimeout(function () { quintaPagina.classList.add('show'); }, 100); } function voltarQuartaPagina() { document.getElementById('quinta-pagina').style.display = 'none'; document.getElementById('quarta-pagina').style.display = 'block'; } 
+
+let coracaoInterval;
+
+function mostrarSextaPagina() {
+    document.getElementById('quinta-pagina').style.display = 'none';
+    const sextaPagina = document.getElementById('sexta-pagina');
+    sextaPagina.style.display = 'block';
+
+    // Iniciar a geração de corações em loop
+    coracaoInterval = setInterval(() => {
+        gerarCoracoes(20); // Número de corações a serem gerados
+    }, 1000); // Intervalo de 1 segundo para gerar novos corações
+
+    setTimeout(function () {
+        sextaPagina.classList.add('show');
+    }, 100);
+}
+
+function gerarCoracoes(numero) {
+    const container = document.getElementById('coracoes-container');
+
+    for (let i = 0; i < numero; i++) {
+        const coracao = document.createElement('div');
+        coracao.className = 'coracao';
+        
+        // Posição aleatória
+        coracao.style.left = Math.random() * 100 + 'vw'; // Largura da tela
+        coracao.style.top = Math.random() * 100 + 'vh'; // Altura da tela
+        coracao.style.animationDelay = Math.random() * 1 + 's'; // Atraso aleatório na animação
+
+        container.appendChild(coracao);
+
+        // Remover o coração após a animação
+        setTimeout(() => {
+            coracao.remove();
+        }, 1000); // Tempo para coincidir com a duração da animação
+    }
+}
+
+// Adicione uma função para parar a animação ao voltar para a quinta página
+function voltarQuintaPagina() {
+    clearInterval(coracaoInterval); // Parar a geração de corações
+    document.getElementById('sexta-pagina').style.display = 'none';
+    document.getElementById('quinta-pagina').style.display = 'block';
+}
 
     </script>
 
