@@ -339,20 +339,28 @@
         </div>
     </div>
 
-    <div id="quarta-pagina" class="next-content fade-in"><h2><b>Agora um quiz de memórias</b></h2>
-        <div class="quiz-container">
-            <h2 id="pergunta"></h2>
-            <div id="opcoes"></div>
-            <div id="resultado"></div>
-            <button class="btn-não" onclick="voltarTerceiraPagina()">⇦</button>
-<button class="btn-sim" onclick="mostrarQuintaPagina()"><b>⇨</b></button>
-        </div>
+    <div id="quarta-pagina" class="next-content fade-in h-screen" style="background-color: #fee2f1;">
+    <h2><b>Agora um quiz de memórias</b></h2>
+    <div class="quiz-container">
+        <h2 id="pergunta"></h2>
+        <div id="opcoes"></div>
+        <div id="resultado"></div>
+        <button class="btn-não" onclick="voltarTerceiraPagina()">⇦</button>
+        <button class="btn-sim" onclick="mostrarQuintaPagina()"><b>⇨</b></button>
     </div>
+</div>
 
-<div id="quinta-pagina" class="next-content fade-in"> <h2><b>Aqui estão algumas músicas mais ouvidas nas nossas calls.</b></h2> <div class="youtube-playlist"> <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL810_IPhQiFjGuFKnAnwsF0aaI9ipbERu&showinfo=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> </div> <div> <button class="btn-não" onclick="voltarQuartaPagina()">⇦</button> </div> </div> 
-
-
-    <audio id="musica" src="https://raw.githubusercontent.com/Millwna/teste/main/shea.mp3"></audio>
+<div id="quinta-pagina" class="next-content fade-in h-screen" style="background-color: #fee2f1;">
+    <h2><b>Aqui estão algumas músicas mais ouvidas nas nossas calls.</b></h2>
+    <div class="youtube-playlist">
+        <iframe class="w-full h-64" src="https://www.youtube.com/embed/videoseries?list=PL810_IPhQiFjGuFKnAnwsF0aaI9ipbERu&showinfo=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <div>
+        <button class="btn-não" onclick="voltarQuartaPagina()">⇦</button>
+    </div>
+</div>
+ 
+ <audio id="musica" src="https://raw.githubusercontent.com/Millwna/teste/main/shea.mp3"></audio>
     <button id="btnMusica" class="btnMusica" onclick="toggleMusica()">▶</button>
 
     <script>
